@@ -77,7 +77,6 @@ export const useRequirement = () => {
     id: string
   ) => {
     try {
-      console.log(id)
       await updateDoc(doc(db, "Requirements", id), {
         complianceList: requirements.complianceList,
         department: requirements.department,

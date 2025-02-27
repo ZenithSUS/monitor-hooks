@@ -14,6 +14,13 @@ export const ViewRequirement = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const { getRequirement, deleteRequirement } = useRequirement();
 
+    const calculateRemainingDays = (dateSubmitted: string, expiration: string) => {
+        const submittedDate = new Date(dateSubmitted);
+        const expirationDate = new Date(expiration);
+        const timeDiff = expirationDate.getTime() - submittedDate.getTime();
+        return Math.ceil(timeDiff / (1000 * 3600 * 24));
+      };
+    
     useEffect(() => {
         const fetchData = async () => {
           if (id) {
@@ -52,6 +59,7 @@ export const ViewRequirement = () => {
                     <p><strong>Date Submitted:</strong> {requirements[0].dateSubmitted}</p>
                     <p><strong>Expiration:</strong> {requirements[0].expiration}</p>
                     <p><strong>Renewal Date:</strong> {requirements[0].renewal}</p>
+                    <p><strong>Days Remaining:</strong> {calculateRemainingDays(requirements[0].dateSubmitted, requirements[0].expiration)}</p>
                     
                     <div className="flex gap-3 mt-4">
                         {id && <button className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer" onClick={() => navigate(`/edit/${id}`)}>Edit</button>}
