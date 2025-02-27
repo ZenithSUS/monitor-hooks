@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { RequirementType } from "../lib/types";
 import { useRequirement } from "../hooks/use-requirement";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 type EditType = {
   id?: string;
@@ -9,6 +9,7 @@ type EditType = {
 
 const UpdateRequirementForm = () => {
   const { id } = useParams<EditType>();
+  const navigate = useNavigate();
   const { updateRequirement, getRequirement } = useRequirement();
   const [formData, setFormData] = useState<Omit<RequirementType, "id">>({
     complianceList: "",
@@ -181,12 +182,20 @@ const UpdateRequirementForm = () => {
           />
         </div>
       </div>
-      <button
-        type="submit"
-        className="mt-4 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-      >
-        Update Requirement
-      </button>
+      <div className="flex gap-2 items-center justify-center p-5">
+        <button
+          type="submit"
+          className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
+        >
+          Update Requirement
+        </button>
+        <button
+          className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          Back
+        </button>
+      </div>
     </form>
   );
 };

@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 export const useRequirement = () => {
   const [requirements, setRequirements] = useState<RequirementType[]>([]);
 
-  const navigte = useNavigate();
+  const navigate = useNavigate(); // Fixed typo
   const fetchRequirement = async () => {
     const q = query(collection(db, "Requirements"));
     const requirementSnapshot = onSnapshot(q, (querySnapshot) => {
@@ -66,7 +66,7 @@ export const useRequirement = () => {
         status: requirements.status,
         typeOfCompliance: requirements.typeOfCompliance,
       });
-      navigte("/");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -91,7 +91,7 @@ export const useRequirement = () => {
         status: requirements.status,
         typeOfCompliance: requirements.typeOfCompliance,
       });
-      navigte('/');
+      navigate('/');
     } catch (error) {
       console.error(error);
     }

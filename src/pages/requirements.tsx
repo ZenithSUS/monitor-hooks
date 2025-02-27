@@ -66,6 +66,7 @@ export const Requirements: React.FC = () => {
                 <div className="flex gap-2.5">
                     <button className="bg-blue-800 p-5 rounded-3xl cursor-pointer" onClick={() => navigate(`/edit/${req.id}`)}>Edit</button>
                     <button className="bg-red-600 p-5 rounded-3xl cursor-pointer" onClick={(e) => handleDelete(e, req.id)}>Delete</button>
+                    <button className="bg-green-600 p-5 rounded-3xl cursor-pointer" onClick={() => navigate(`/view/${req.id}`)}>View</button>
                 </div>
               </td>
             </tr>

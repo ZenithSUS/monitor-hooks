@@ -1,8 +1,10 @@
 import React, { FormEvent, useState } from "react";
 import { RequirementType } from "../lib/types";
 import { useRequirement } from "../hooks/use-requirement";
+import { useNavigate } from "react-router-dom";
 
 const AddRequirementForm: React.FC = () => {
+  const navigate = useNavigate();
   const { addNewRequirement } = useRequirement();
   const [formData, setFormData] = useState<Omit<RequirementType, "id">>({
     complianceList: "",
@@ -25,7 +27,6 @@ const AddRequirementForm: React.FC = () => {
       [name]: value,
     }));
   };
-
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -162,12 +163,20 @@ const AddRequirementForm: React.FC = () => {
           />
         </div>
       </div>
+      <div className="flex gap-2 items-center justify-center p-5">
       <button
         type="submit"
-        className="mt-4 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+        className="p-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
       >
         Add Requirement
       </button>
+      <button
+        className="p-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
+        onClick={() => navigate("/")}
+      >
+        Back
+      </button>
+      </div>
     </form>
   );
 };
